@@ -11,13 +11,12 @@ namespace Validation_Civic_Number
         static void Main(string[] args)
         {
             string userInput = "";
-
-            //Ask user for string input
-            Console.WriteLine("Skriv in ett 12-siffrigt personnummer YYYYMMDDnnnc: ");
+           
+            //Ask user for input
+            Console.WriteLine("Skriv in ett 12-siffrigt personnummer enligt följande YYYYMMDDnnnc: ");
             userInput = Console.ReadLine();
 
-
-
+            Console.ReadKey();
         }
     }
 }
