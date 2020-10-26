@@ -12,6 +12,8 @@ namespace Validation_Civic_Number
         {
             string userInput = "";
             int year = 0;
+            int month = 0;
+            bool isLeapYear = true;
            
             //Ask user for input
             Console.WriteLine("Skriv in ett 12-siffrigt personnummer enligt följande YYYYMMDDnnnc: ");
@@ -19,12 +21,16 @@ namespace Validation_Civic_Number
 
             //Takes out year, converts and places in an int variable
             year = int.Parse(userInput.Substring(0, 4));
+            //Takes out month, converts and places in an int variable
+            month = int.Parse(userInput.Substring(4, 6));
 
             //Calls method NumberOfDigits and sends in string value
             NumberOfDigits(userInput);
             //Calls method CorrectYear and send in int variable
             CorrectYear(year);
-
+            // Calls method checkLeapYear and stores true or false in variable
+            isLeapYear = checkLeapYear(year);
+          
             //Stop
             Console.ReadKey();
         }
@@ -47,6 +53,28 @@ namespace Validation_Civic_Number
             if (year < 1753 || year > 2020)
             {
                 Console.WriteLine("Du har angett ett felaktigt årtal.");
+            }
+        }
+        //--------------------------------------------------------
+        //Method that checks if a year is a leap year
+        //--------------------------------------------------------
+        static bool checkLeapYear(int year)
+        {
+            if (year % 400 == 0)
+            {
+                return true;
+            }
+            else if (year % 100 == 0)
+            {
+                return false;
+            }
+            else if (year % 4 == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
