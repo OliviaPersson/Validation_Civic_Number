@@ -11,10 +11,14 @@ namespace Validation_Civic_Number
         static void Main(string[] args)
         {
             string userInput = "";
+            string gender = "";
+
             int year = 0;
             int month = 0;
+            int birthNumber = 0;
+
             bool isLeapYear = true;
-           
+
             //Ask user for input
             Console.WriteLine("Skriv in ett 12-siffrigt personnummer enligt följande YYYYMMDDnnnc: ");
             userInput = Console.ReadLine();
@@ -22,7 +26,9 @@ namespace Validation_Civic_Number
             //Takes out year, converts and places in an int variable
             year = int.Parse(userInput.Substring(0, 4));
             //Takes out month, converts and places in an int variable
-            month = int.Parse(userInput.Substring(4, 6));
+            month = int.Parse(userInput.Substring(4, 2));
+            //Takes out last integer in birtnumber and places in variable
+            birthNumber = int.Parse(userInput.Substring(10, 1));
 
             //Calls method NumberOfDigits and sends in string value
             NumberOfDigits(userInput);
@@ -30,7 +36,9 @@ namespace Validation_Civic_Number
             CorrectYear(year);
             // Calls method checkLeapYear and stores true or false in variable
             isLeapYear = checkLeapYear(year);
-          
+            // Calls method checkGender and stores in variable
+            gender = GetGender(birthNumber);
+
             //Stop
             Console.ReadKey();
         }
@@ -75,6 +83,20 @@ namespace Validation_Civic_Number
             else
             {
                 return false;
+            }
+        }
+        //--------------------------------------------------------
+        //Method that checks gender
+        //--------------------------------------------------------
+        static string GetGender(int birthNumber)
+        {
+            if (birthNumber == 0 || birthNumber % 2 == 0)
+            {
+                return "kvinna";
+            }
+            else
+            {
+                return "man";
             }
         }
     }
