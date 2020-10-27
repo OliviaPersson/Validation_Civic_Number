@@ -15,6 +15,7 @@ namespace Validation_Civic_Number
 
             int year = 0;
             int month = 0;
+            int day = 0;
             int birthNumber = 0;
 
             bool isLeapYear = true;
@@ -25,8 +26,16 @@ namespace Validation_Civic_Number
 
             //Takes out year, converts and places in an int variable
             year = int.Parse(userInput.Substring(0, 4));
-            //Takes out month, converts and places in an int variable
-            month = int.Parse(userInput.Substring(4, 2));
+           
+            //Checks if userinput is 00
+            if(userInput.Substring(4, 2) != "00")
+            {
+                //Takes out month, remove 0 if first number, converts and places in an int variable
+                month = int.Parse(userInput.Substring(4, 2).TrimStart('0'));
+            } 
+         
+            //Takes out day, convert and store in variable
+            day = int.Parse(userInput.Substring(6, 2));
             //Takes out last integer in birtnumber and places in variable
             birthNumber = int.Parse(userInput.Substring(10, 1));
 
@@ -38,6 +47,9 @@ namespace Validation_Civic_Number
             isLeapYear = checkLeapYear(year);
             // Calls method checkGender and stores in variable
             gender = GetGender(birthNumber);
+
+            checkMonth(month);
+            
 
             //Stop
             Console.ReadKey();
@@ -80,10 +92,7 @@ namespace Validation_Civic_Number
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
         //--------------------------------------------------------
         //Method that checks gender
@@ -97,6 +106,16 @@ namespace Validation_Civic_Number
             else
             {
                 return "man";
+            }
+        } 
+        //--------------------------------------------------------
+        //Method that checks month
+        //--------------------------------------------------------
+        static void checkMonth(int month)
+        {
+            if(month < 1 || month > 12)
+            {
+                Console.WriteLine("Du har angett en felaktig månad");
             }
         }
     }
