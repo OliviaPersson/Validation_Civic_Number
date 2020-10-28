@@ -47,11 +47,11 @@ namespace Validation_Civic_Number
             //Takes out last integer in birtnumber and places in variable
             birthNumber = int.Parse(userInput.Substring(10, 1));
 
-            //Method calls that returns true, false and a string and stores in variable
+            //Method calls that returns true, false and a string and stores in variables
             correctNumberOfDigits = NumberOfDigits(userInput);
             correctYear = CorrectYear(year);
-            correctMonth = checkMonth(month);
-            isLeapYear = checkLeapYear(year);
+            correctMonth = CheckMonth(month);
+            isLeapYear = CheckLeapYear(year);
             correctValidDays = CheckValidDaysInMonth(isLeapYear, month, day);
             gender = GetGender(birthNumber);
 
@@ -72,7 +72,7 @@ namespace Validation_Civic_Number
             //Expression that checks if the variable contains 12 digits
             if (civicNumber.Length < 12 || civicNumber.Length > 12)
             {
-                Console.WriteLine("Du har ej angett 12st siffror.");
+                Console.WriteLine("Du har ej angett 12st siffror. Vänlig försök igen.");
                 return false;
             }
             return true;
@@ -84,7 +84,7 @@ namespace Validation_Civic_Number
         {
             if (year < 1753 || year > 2020)
             {
-                Console.WriteLine("Du har angett ett felaktigt årtal.");
+                Console.WriteLine("Du har angett ett felaktigt årtal. Vänlig försök igen.");
                 return false;
             }
             return true;
@@ -92,11 +92,11 @@ namespace Validation_Civic_Number
         //--------------------------------------------------------
         // Method that checks month
         //--------------------------------------------------------
-        static bool checkMonth(int month)
+        static bool CheckMonth(int month)
         {
             if (month < 1 || month > 12)
             {
-                Console.WriteLine("Du har angett en felaktig månad");
+                Console.WriteLine("Du har angett en felaktig månad. Vänlig försök igen.");
                 return false;
             }
             return true;
@@ -104,7 +104,7 @@ namespace Validation_Civic_Number
         //--------------------------------------------------------
         // Method that checks if a year is a leap year
         //--------------------------------------------------------
-        static bool checkLeapYear(int year)
+        static bool CheckLeapYear(int year)
         {
             if (year % 400 == 0)
             {
@@ -159,10 +159,10 @@ namespace Validation_Civic_Number
                 //Checks February
                 if (month == 2)
                 {
-                    //If day is greater than 28 print to cmd
-                    if (day > 28)
+                    //If day is greater than 28 or less than 1 print to cmd
+                    if (day > 28 || day < 1)
                     {
-                        Console.WriteLine("Felaktig dag har angetts");
+                        Console.WriteLine("Felaktig dag har angetts. Vänlig försök igen.");
                         return false;
                     }
                 }
@@ -172,9 +172,9 @@ namespace Validation_Civic_Number
             {
                 if (month == 2)
                 {
-                    if (day > 29)
+                    if (day > 29 || day < 1)
                     {
-                        Console.WriteLine("Felaktig dag har angetts");
+                        Console.WriteLine("Felaktig dag har angetts. Vänlig försök igen.");
                         return false;
                     }
                 }
@@ -182,7 +182,7 @@ namespace Validation_Civic_Number
             return true;
         }
         //--------------------------------------------------------
-        //Method that checks LongMonth and shortMonth
+        // Method that checks LongMonth and shortMonth
         //--------------------------------------------------------
         static bool LongMonthShortMonth(int[] array, int month, int day, int daysInMonth)
         {
@@ -192,10 +192,10 @@ namespace Validation_Civic_Number
                 //Checks if number i i position is equal to month
                 if (array[i] == month)
                 {
-                    //If day is greater than daysInMonth print to cmd
-                    if (day > daysInMonth)
+                    //If day is greater than daysInMonth or less than 1 print to cmd
+                    if (day > daysInMonth || day < 1)
                     {
-                        Console.WriteLine("Felaktig dag har angetts");
+                        Console.WriteLine("Felaktig dag har angetts. Vänlig försök igen.");
                         return false;
                     }
                 }
