@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Validation_Civic_Number
 {
@@ -35,14 +31,15 @@ namespace Validation_Civic_Number
             {
                 //Takes out month, if first number is 0 remove 0, converts and places in an int variable
                 month = int.Parse(userInput.Substring(4, 2).TrimStart('0'));
-            } 
+            }
             if (userInput.Substring(6, 2) != "00")
             {
                 day = int.Parse(userInput.Substring(6, 2).TrimStart('0'));
             }
+
             //Takes out last integer in birtnumber and places in variable
             birthNumber = int.Parse(userInput.Substring(10, 1));
-
+       
             //Method calls that returns true, false or a string depending on correct input and stores in variables
             correctNumberOfDigits = NumberOfDigits(userInput);
             correctYear = CorrectYear(year);
@@ -56,6 +53,7 @@ namespace Validation_Civic_Number
             {
                 Console.WriteLine("Personnumret är korrekt och du är {0} (juridiskt)", gender);
             }
+
             Console.ReadKey();
         }
         //--------------------------------------------------------
@@ -70,6 +68,7 @@ namespace Validation_Civic_Number
                 Console.WriteLine("Du har ej angett 12st siffror. Vänlig försök igen.");
                 return false;
             }
+
             return true;
         }
         //--------------------------------------------------------
@@ -83,6 +82,7 @@ namespace Validation_Civic_Number
                 Console.WriteLine("Du har angett ett felaktigt årtal. Vänlig försök igen.");
                 return false;
             }
+
             return true;
         }
         //--------------------------------------------------------
@@ -96,6 +96,7 @@ namespace Validation_Civic_Number
                 Console.WriteLine("Du har angett en felaktig månad. Vänlig försök igen.");
                 return false;
             }
+
             return true;
         }
         //--------------------------------------------------------
@@ -116,6 +117,7 @@ namespace Validation_Civic_Number
             {
                 return true;
             }
+
             return false;
         }
         //--------------------------------------------------------
@@ -178,6 +180,7 @@ namespace Validation_Civic_Number
                     }
                 }
             }
+
             return true;
         }
         //--------------------------------------------------------
@@ -200,6 +203,7 @@ namespace Validation_Civic_Number
                     }
                 }
             }
+
             return true;
         }
     }
